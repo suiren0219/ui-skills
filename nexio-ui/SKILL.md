@@ -12,7 +12,7 @@ description: >-
 
 # Nexio UI 设计语言（源码实测版）
 
-基准仓库：`NexioSchedule`（https://github.com/suiren0219/NexioSchedule ，分支 `feat/island-auth-local-mcp` 实测）。
+基准仓库：`NexioSchedule`（https://github.com/suiren0219/NexioSchedule，分支 `feat/island-auth-local-mcp` 实测）。
 三层结构：`miuix/`（Miuix 组件库，Apache-2.0 上游 + 定制）→ `ui-shared/`（跨平台页面与自研组件）→ 平台宿主（androidApp / desktopApp / ios / ohos）。
 **写任何界面之前先读本文件的「坑清单」**；所有取值都来自当前源码，不要凭感觉发明尺寸。
 

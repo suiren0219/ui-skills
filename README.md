@@ -6,13 +6,13 @@
 
 ## 收录
 
-| Skill | 基准来源 | 适用场景 |
-| --- | --- | --- |
-| [`ksu-ui`](ksu-ui/SKILL.md) | KernelSU 官方 / KernelSU-Next / SukiSU-Ultra 三家 Compose 源码 | root 管理器风格：Monet 动态色 + AMOLED、实底状态卡、StatusTag 徽章、液态玻璃悬浮底栏 |
-| [`czero-ui`](czero-ui/SKILL.md) | CZero（Xocio/CZero）官方截图实测取色 | 工具型数据卡流：浅灰底白卡、超大纯黑数字、状态 tint 卡；含 App 页面与桌面 widget 两套规范 |
-| [`nexio-ui`](nexio-ui/SKILL.md) | [NexioSchedule](https://github.com/suiren0219/NexioSchedule) 工程真实源码 | Miuix 设置页体系：20dp 连续圆角卡、胶囊按钮、CardExpand 淡入渐变、柔光玻璃/磨砂 |
-| [`fruit-flavor-design`](fruit-flavor-design/SKILL.md) | Apple Human Interface Guidelines | 全平台 UI/UX 总纲：工作流、平台差异、Design Tokens、组件状态清单、质量红线 |
-| [`rust-desktop-ui`](rust-desktop-ui/SKILL.md) | GPUI Kit / egui / Slint / Iced / Tauri 官方仓库 | Rust 桌面应用：GUI 框架选型、历史记录与托盘设计、交付验证边界 |
+| Skill | 基准来源 | 适用场景 | 实作案例 |
+| --- | --- | --- | --- |
+| [`ksu-ui`](ksu-ui/SKILL.md) | KernelSU 官方 / KernelSU-Next / SukiSU-Ultra 三家 Compose 源码 | root 管理器风格：Monet 动态色 + AMOLED、实底状态卡、StatusTag 徽章、液态玻璃悬浮底栏 | [管理面板](showcase/ksu-ui/dashboard.png) |
+| [`czero-ui`](czero-ui/SKILL.md) | CZero（Xocio/CZero）官方截图实测取色 | 工具型数据卡流：浅灰底白卡、超大纯黑数字、状态 tint 卡；含 App 页面与桌面 widget 两套规范 | [课表页](showcase/czero-ui/schedule.png) |
+| [`nexio-ui`](nexio-ui/SKILL.md) | [NexioSchedule](https://github.com/suiren0219/NexioSchedule) 工程真实源码 | Miuix 设置页体系：20dp 连续圆角卡、胶囊按钮、CardExpand 淡入渐变、柔光玻璃/磨砂 | [设置页](showcase/nexio-ui/mcp-service.png) |
+| [`fruit-flavor-design`](fruit-flavor-design/SKILL.md) | Apple Human Interface Guidelines | 全平台 UI/UX 总纲：工作流、平台差异、Design Tokens、组件状态清单、质量红线 | 贯穿各项目，无独立截图 |
+| [`rust-desktop-ui`](rust-desktop-ui/SKILL.md) | GPUI Kit / egui / Slint / Iced / Tauri 官方仓库 | Rust 桌面应用：GUI 框架选型、历史记录与托盘设计、交付验证边界 | — |
 
 ## 使用方式
 
@@ -39,6 +39,39 @@
 - **禁改 vendor 源码**：Miuix 等上游组件库不改，风格只通过 token 与组合实现。
 - **红线即自检**：每份 skill 末尾都有可判定的「不合格」条目，交付前逐条过。
 - **数值可追溯**：色值、圆角、间距、动效时长都标注来源文件或截图，不发明尺寸。
+
+## 实作记录
+
+[`USAGE.md`](USAGE.md) 按项目记录每个 skill 的落地程度（深度落地 / 局部应用 / 仅参考）和证据链接。截图放在 [`showcase/`](showcase/README.md)，附隐私与真实性说明，与规范正文隔离。
+
+## 目录结构
+
+```text
+ui-skills/
+├── ksu-ui/
+│   ├── SKILL.md
+│   └── references/            # 三家管理器各自的规范
+├── czero-ui/
+│   ├── SKILL.md
+│   ├── references/            # tokens / components / widgets
+│   └── assets/                # 官方截图基准
+├── nexio-ui/SKILL.md
+├── fruit-flavor-design/SKILL.md
+├── rust-desktop-ui/SKILL.md
+├── showcase/                  # 实作截图，不参与 skill 加载
+├── tools/sync.sh              # 本机源目录 -> 仓库，单向
+├── USAGE.md
+├── README.md
+└── LICENSE
+```
+
+## 隔离与维护
+
+- **仓库是分发副本**：skill 的权威版本在本机源目录，改完用 `tools/sync.sh` 单向复制过来，不要把仓库里的改动反向覆盖回本机。
+- **skill 自包含**：每个目录只依赖自身文件；跨 skill 的引用只出现在「冲突裁决」文字里，不加载对方的文件。
+- **截图不进 skill**：`showcase/` 与 skill 目录分离，避免素材体积影响 skill 加载，也避免把项目细节混进通用规范。
+- **发布前脱敏**：`sync.sh` 会把 skill 正文里的本机项目路径替换为公开仓库地址；新增内容若含本地路径，提交前要检查。
+- **同步状态检查**：`tools/sync.sh --check` 只报告差异，不写文件。
 
 ## 许可
 
