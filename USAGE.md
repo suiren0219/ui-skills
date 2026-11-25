@@ -15,7 +15,7 @@
 | 项目 | Skill | 程度 | 落地范围 |
 | --- | --- | --- | --- |
 | [gdust-v2](https://github.com/suiren0219/gdust-v2) 广科课程表 | `czero-ui` | 深度落地 | App 页面 + 九款桌面小部件 |
-| [NexioSchedule](https://github.com/suiren0219/NexioSchedule) 课程表 | `nexio-ui` | 深度落地 | 设置页组件库、动效、柔光玻璃 |
+| [NexioSchedule](https://github.com/suiren0219/NexioSchedule) 课程表 | `nexio-ui` / `nexioui-lib` | 深度落地 | 设置页组件库、动效、柔光玻璃；已接入 NexioUI 复合构建 |
 | [astrbot_plugin_github_bridge](https://github.com/suiren0219/astrbot_plugin_github_bridge) | `ksu-ui` | 深度落地（Web 移植） | Dashboard 全套 token 与组件 |
 | [astrbot_plugin_schedule_lite](https://github.com/suiren0219/astrbot_plugin_schedule_lite) | 无 | 独立实现 | Miuix / HyperOS 视觉规范的 Web 移植 |
 
@@ -41,6 +41,21 @@
 - 柔光玻璃独立为 `com.haooz.softglass` 库，页面层只注入 `GlassBackdrop`，无壁纸或无 shader 时退回纯色表面。
 - 提交记录可见「nexioui 组件迁移」「外观页开关改用 SwitchPreference」等演进。
 - 文档：`docs/SOFTGLASS_LIBRARY_PLAN.md`、`docs/hyperos-glass-token.md`
+
+### 与 `nexioui-lib` 的关系
+
+NexioSchedule 的 `settings.gradle.kts` 用复合构建接入上游控件库：
+
+```kotlin
+val nexiouiSource = file("../nexioui")
+if (nexiouiSource.resolve("build.gradle.kts").exists()) {
+    includeBuild(nexiouiSource) { dependencySubstitution { /* ... */ } }
+}
+```
+
+即：本地存在 `../nexioui` 源码时改库即改即测，否则回落到 JitPack 坐标 `com.github.HaoZai000.NexioUI:nexioui`。
+
+因此这个项目实际有**两层规范**：应用页面走 `nexio-ui`（Miuix 体系，本仓库实测自应用源码），控件库走 `nexioui-lib`（`NexioTheme` 体系，实测自上游库源码）。两者同名组件（Card / Button / CardExpand）参数不同，改代码前先确认当前文件 import 的是哪一套。
 
 ## astrbot_plugin_github_bridge · ksu-ui
 

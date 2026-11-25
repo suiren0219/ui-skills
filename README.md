@@ -11,6 +11,7 @@
 | [`ksu-ui`](ksu-ui/SKILL.md) | KernelSU 官方 / KernelSU-Next / SukiSU-Ultra 三家 Compose 源码 | root 管理器风格：Monet 动态色 + AMOLED、实底状态卡、StatusTag 徽章、液态玻璃悬浮底栏 | [管理面板](showcase/ksu-ui/dashboard.png) |
 | [`czero-ui`](czero-ui/SKILL.md) | CZero（Xocio/CZero）官方截图实测取色 | 工具型数据卡流：浅灰底白卡、超大纯黑数字、状态 tint 卡；含 App 页面与桌面 widget 两套规范 | [课表页](showcase/czero-ui/schedule.png) |
 | [`nexio-ui`](nexio-ui/SKILL.md) | [NexioSchedule](https://github.com/suiren0219/NexioSchedule) 工程真实源码 | Miuix 设置页体系：20dp 连续圆角卡、胶囊按钮、CardExpand 淡入渐变、柔光玻璃/磨砂 | [设置页](showcase/nexio-ui/mcp-service.png) |
+| [`nexioui-lib`](nexioui-lib/SKILL.md) | [HaoZai000/NexioUI](https://github.com/HaoZai000/NexioUI) 控件库源码（Apache-2.0） | 库层规范：`NexioTheme` 语义色板、按压高光替代水波纹、弹簧动效、液态玻璃 backdrop；与 `nexio-ui` 分工见该 skill 首页 | — |
 | [`fruit-flavor-design`](fruit-flavor-design/SKILL.md) | Apple Human Interface Guidelines | 全平台 UI/UX 总纲：工作流、平台差异、Design Tokens、组件状态清单、质量红线 | 贯穿各项目，无独立截图 |
 | [`rust-desktop-ui`](rust-desktop-ui/SKILL.md) | GPUI Kit / egui / Slint / Iced / Tauri 官方仓库 | Rust 桌面应用：GUI 框架选型、历史记录与托盘设计、交付验证边界 | — |
 
@@ -58,6 +59,7 @@ ui-skills/
 │   ├── references/            # tokens / components / widgets
 │   └── assets/                # 官方截图基准
 ├── nexio-ui/SKILL.md
+├── nexioui-lib/               # 上游控件库规范，含 references/tokens|components|motion
 ├── fruit-flavor-design/SKILL.md
 ├── rust-desktop-ui/SKILL.md
 ├── showcase/                  # 实作截图，不参与 skill 加载
@@ -77,4 +79,8 @@ ui-skills/
 
 ## 许可
 
-MIT，见 [LICENSE](LICENSE)。各 skill 中引用的第三方项目（KernelSU、SukiSU-Ultra、CZero、Miuix 等）版权归各自作者所有，本仓库仅包含独立撰写的设计规范文本，未复制上游源码。
+本仓库自撰的规范文本采用 MIT，见 [LICENSE](LICENSE)。
+
+各 skill 中引用的第三方项目（KernelSU、KernelSU-Next、SukiSU-Ultra、CZero、Miuix、NexioUI、SoftGlass 等）版权归各自作者所有；本仓库**未复制上游源码**，只写独立撰写的规范描述与实测数值。
+
+`nexioui-lib` 描述的上游 NexioUI 采用 Apache-2.0，其 `NOTICE` 另声明部分视觉与动效参数参考了小米 HyperOS / COUI，相关权利归小米集团，商用需自行确认授权。该约束同样适用于本仓库中与 NexioUI 相关的条目。

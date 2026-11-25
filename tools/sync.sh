@@ -10,6 +10,9 @@
 #   ZCODE_SKILLS     默认 ~/.zcode/skills
 #   CLI_HOME_SKILLS  默认 /d/zcode/cli-home/skills
 #   AGENTS_SKILLS    默认 ~/.agents/skills
+#
+# 注意：nexioui-lib 由本仓库直接维护（上游是 HaoZai000/NexioUI 只读源），
+# 不经本脚本同步；本机没有它的源目录。新增此类「仓库自维护」skill 时在此登记。
 
 set -euo pipefail
 
