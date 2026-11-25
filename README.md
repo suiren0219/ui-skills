@@ -44,6 +44,8 @@
 
 [`USAGE.md`](USAGE.md) 按项目记录每个 skill 的落地程度（深度落地 / 局部应用 / 仅参考）和证据链接。截图放在 [`showcase/`](showcase/README.md)，附隐私与真实性说明，与规范正文隔离。
 
+使用记录里也有**不属于任何现有 skill** 的实作：`astrbot_plugin_schedule_lite` 的控制台是一套独立的 Miuix / HyperOS Web 移植，创建时间早于本仓库全部 skill，因此标为「独立实现」，不并入某个 skill 的案例。
+
 ## 目录结构
 
 ```text

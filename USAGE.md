@@ -17,6 +17,7 @@
 | [gdust-v2](https://github.com/suiren0219/gdust-v2) 广科课程表 | `czero-ui` | 深度落地 | App 页面 + 九款桌面小部件 |
 | [NexioSchedule](https://github.com/suiren0219/NexioSchedule) 课程表 | `nexio-ui` | 深度落地 | 设置页组件库、动效、柔光玻璃 |
 | [astrbot_plugin_github_bridge](https://github.com/suiren0219/astrbot_plugin_github_bridge) | `ksu-ui` | 深度落地（Web 移植） | Dashboard 全套 token 与组件 |
+| [astrbot_plugin_schedule_lite](https://github.com/suiren0219/astrbot_plugin_schedule_lite) | 无 | 独立实现 | Miuix / HyperOS 视觉规范的 Web 移植 |
 
 `fruit-flavor-design` 作为总纲贯穿以上项目：先按 HIG 确定信息层级与交互，再落到具体设计语言。`rust-desktop-ui` 用于 Rust 桌面端的框架选型与交付验证，不产生独立视觉规范。
 
@@ -50,6 +51,19 @@
 - 状态卡为绿实底 + `StatusTag` 徽章；卡片无阴影；唯一阴影属于液态玻璃悬浮底栏（第 453 行注释）。
 - AMOLED 档位把背景压到纯黑；换主题走 `--color-time` 与 spring 曲线。
 - README 公开声明界面参考 SukiSU-Ultra 重新实现，未复制上游源码。
+
+## astrbot_plugin_schedule_lite · 独立实现
+
+**程度：不适用现有 skill。** 控制台是 Miuix / HyperOS 视觉规范的 Web 移植，自成一套 token。
+
+- `pages/dashboard/miuix.css`（378 行）定义 `--miuix-*` 命名空间：双主题色板、`28px`/`18px` 圆角、999px 胶囊、`backdrop-filter: blur(22px)` 玻璃卡、自定义滑块开关。
+- 字体栈 `MiSans / HarmonyOS Sans SC / PingFang SC`，卡片带 1px 描边与重阴影（`0 18px 50px`），这是 HyperOS 的观感，与 `ksu-ui` 的「无阴影扁平卡」红线相反，所以不能归到 KSU 系。
+- 主题三态（跟随系统 / 浅色 / 深色），`localStorage` 记忆，嵌入 AstrBot 插件页时优先读宿主深浅色；三档响应式断点 `1120px` / `860px` / `560px`。
+- README 明确写了取舍原因：「Miuix 目前只提供 Compose Multiplatform 组件，没有可直接引用的 Web 构建；控制台按 Miuix / HyperOS 的视觉规范用原生 HTML/CSS 实现，不引入前端构建链。」
+
+**时间线判定**：`miuix.css` 首版提交 2026-10-26（v1.3.0），早于本仓库任何一份 skill 的创建时间（`czero-ui` 11-14、`ksu-ui` 11-15、`nexio-ui` 11-21）。它的 `#3482ff` 与 `czero-ui` 的交互强调色相同，但那是 MIUI 系统蓝本身的取值，不是引用。因此这份实现归入「独立实现」，不虚报为某个 skill 的落地。
+
+它和 `nexio-ui` 同属 Miuix 设计语言，但分别落在 Web 与 Compose 两侧，组件形态差异明显（Shadow 有无、圆角档位、动效机制），目前没有合并依据。若后续要沉淀成 skill，应作为独立的 `miuix-web`，而不是并入 `nexio-ui`。
 
 ## 备注
 
